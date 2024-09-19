@@ -1,4 +1,5 @@
 "use server";
+import fs from "fs";
 
 import { randomUUID } from "crypto";
 import { writeFile } from "fs/promises";
@@ -13,7 +14,8 @@ export async function convert(formData: FormData) {
 
   const saveName = `${randomUUID()}-${Date.now().toString()}.webp`;
   const savePath = path.join(process.cwd(), "public", "images", saveName);
-  await sharp(buffer).resize(100, 100).webp().toFile(savePath);
+  const outBuffer = await sharp(buffer).resize(100, 100).webp().toBuffer();
+  fs.writeFileSync(savePath, outBuffer);
   revalidatePath("/");
   return saveName;
 }
