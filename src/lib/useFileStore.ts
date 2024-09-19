@@ -45,7 +45,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
     try {
       const { files } = get();
       const file = files[fileId - 1];
-      const path = `/images/${await convert(file.formData)}`;
+      const path = `api/images/${await convert(file.formData)}`;
       set((state) => {
         const newFiles = state.files.map((file) => {
           if (file.id === fileId) {
