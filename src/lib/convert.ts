@@ -14,7 +14,7 @@ export async function convert(formData: FormData) {
   await sharp(buffer)
     .resize(100, 100)
     .webp()
-    .toFile("/public/images/" + saveName);
+    .toFile("public/images/" + saveName);
   revalidatePath("/");
   return saveName;
 }
