@@ -13,7 +13,11 @@ export async function convert(formData: FormData) {
   const buffer = new Uint8Array(arrayBuffer);
 
   const saveName = `${randomUUID()}-${Date.now().toString()}.webp`;
-  const savePath = path.join(process.cwd(), "public", "images", saveName);
+  const savePath = path.join(
+    process.cwd(),
+    "/.next/server/public/images/",
+    saveName
+  );
   const outBuffer = await sharp(buffer).resize(100, 100).webp().toBuffer();
   fs.writeFileSync(savePath, outBuffer);
   revalidatePath("/");
