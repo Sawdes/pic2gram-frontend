@@ -1,4 +1,4 @@
-Image to webp image for telegram emoji
+Image to webp format for telegram emoji
 
 ## RUN:
 ```bash
